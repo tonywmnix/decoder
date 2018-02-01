@@ -12,18 +12,18 @@ def equal(a, b):
 
     if len(a) != 2 or len(b) != 2:
         return False
-    
+
     if a == b: return True
     c = '%s%s'%(a[1], a[0])
     if c == b: return True
-    
+
     return False
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input", type=str, help=u"基因文件")
 parser.add_argument("-t", "--report_type", type=str, default='html', help=u"报告的类型:文本文件(-t txt);网页(-t html)")
 parser.add_argument("-o", "--output", type=str, default='report', help=u"报告的生成目录(-t html) or  报告文件名(-t txt)")
-#parser.add_argument("-l", "--language", type=str, default='en', help=u"报告的语言:中文(-l cn);英文(-l en)")
+parser.add_argument("-l", "--language", type=str, default='en', help=u"报告的语言:中文(-l cn);英文(-l en)")
 args = parser.parse_args()
 
 input_ = args.input
@@ -45,7 +45,7 @@ for g in Genotype.objects.order_by('-magnitude').all():
         matched.append(g)
 
 if args.report_type == 'txt':
-    
+
     if not args.output.endswith('txt'):
         output_fn = '%s.txt'%args.output
     else:
@@ -78,7 +78,7 @@ if args.report_type == 'html':
     c = Context({'matched': matched})
     s = t.render(c).encode('u8')
     open(fn_en, 'w').write(s)
-    
+
     t1 = os.path.join(args.output, 'template_cn.html')
     os.remove(t1)
     t2 = os.path.join(args.output, 'template_en.html')

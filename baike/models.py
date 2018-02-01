@@ -19,9 +19,9 @@ class Snp(models.Model):
         return 'rs%s'%self.rsid
 
 repute_choices = (
-    ('neutral', u'中性'),
-    ('Good', u'有益'),
-    ('Bad', u'有害'),
+    ('neutral', 'neutral'),
+    ('Good', 'Good'),
+    ('Bad', 'Bad'),
 )
 class Genotype(models.Model):
     class Meta:
@@ -45,13 +45,13 @@ class Genotype(models.Model):
         return 'rs%s(%s:%s)'%(self.snp.rsid, self.allele1, self.allele2)
 
 phenotype_category_choices = (
-    ('nutrition_metabolism', u'营养代谢'),
-    ('genetic_characteristics', u'遗传特征'),
-    ('health_risk', u'健康风险'),
-    ('genetic_diseases', u'遗传性疾病'),
-    ('drug_reactions', u'药物反应'),
-    ('sports', u'运动基因'),
-    ('ancestry', u'祖源'),
+    ('nutrition_metabolism', 'nutrition_metabolism'),
+    ('genetic_characteristics', 'genetic_characteristics'),
+    ('health_risk', 'health_risk'),
+    ('genetic_diseases', 'genetic_diseases'),
+    ('drug_reactions', 'drug_reactions'),
+    ('sports', 'sports'),
+    ('ancestry', 'ancestry'),
 )
 
 class Phenotype(models.Model):
